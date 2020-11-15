@@ -1,6 +1,10 @@
 # Jina + Streamlit
 
-## 1. Run South Park Docker Image
+Supports both text and image search
+
+## 1. Run Docker Image
+
+For example:
 
 ```bash
 docker run -p 45678:45678 jinaai/hub.app.distilbert-southpark
