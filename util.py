@@ -79,6 +79,41 @@ class Encoder:
         print(output)
         return output
 
+    def ndarray_to_png(fig):
+        import numpy as np
+        from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+        from matplotlib.figure import Figure
+        fig = Figure()
+        canvas = FigureCanvas(fig)
+        ax = fig.gca()
+
+        ax.text(0.0,0.0,"Test", fontsize=45)
+        ax.axis('off')
+
+        canvas.draw()       # draw the canvas, cache the renderer
+
+        image = np.fromstring(canvas.tostring_rgb(), dtype='uint8')
+
+        return image
+
+    def rgb_ndarray_to_png(img):
+        from PIL import Image
+
+        import numpy as np
+        # img_filename = "image.png"
+        # img = Image.open(img_filename)
+        # img = img.convert("RGB")
+        # img.show()
+        # aa  = np.array(img)
+        img = Image.fromarray(img, 'RGBA')
+        img.save('test.png')
+        img.show()
+        # alpha = Image.fromarray(img,"RGB")
+        # alpha.save('my.png')
+        # alpha.show()
+
+        return img
+
 
 class Getter:
     def images(endpoint, query=default_img, top_k=10):
