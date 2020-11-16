@@ -26,8 +26,8 @@ streamlit run app.py
 
 ### With Image
 
-![](.github/images/image.gif)
+<img src=".github/images/image.gif" width=300>
 
 ### By Drawing
 
-![](.github/images/draw.gif)
+<img src=".github/images/draw.gif" width=300>
