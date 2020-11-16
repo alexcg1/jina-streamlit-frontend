@@ -6,7 +6,7 @@ A simple front-end for [Jina](http://www.jina.ai) neural search framework, writt
 
 ```bash
 git clone https://github.com/alexcg1/jina-streamlit-frontend.git
-cd jina-streamlit-frontend.git
+cd jina-streamlit-frontend
 pip install -r requirements.txt
 ```
 
