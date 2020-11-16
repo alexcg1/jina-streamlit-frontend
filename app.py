@@ -21,14 +21,14 @@ elif media_select == "Image":
 elif media_select == "Draw":
     stroke_width = st.sidebar.slider("Stroke width: ", 1, 25, 3)
     stroke_color = st.sidebar.color_picker("Stroke color hex: ")
-    bg_color = st.sidebar.color_picker("Background color hex: ", "#000")
+    bg_color = st.sidebar.color_picker("Background color hex: ", "#ffffff")
     bg_image = st.sidebar.file_uploader("Background image:", type=["png", "jpg"])
     drawing_mode = st.sidebar.selectbox(
         "Drawing tool:", ("freedraw", "line", "rect", "circle", "transform")
     )
     realtime_update = st.sidebar.checkbox("Update in realtime", True)
 
-    canvas_result = st_canvas(
+    data = st_canvas(
         fill_color="rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
         stroke_width=stroke_width,
         stroke_color=stroke_color,
@@ -42,17 +42,37 @@ elif media_select == "Draw":
     )
 
     # Do something interesting with the image data and paths
-    if canvas_result.image_data is not None:
+    import base64
+    from io import BytesIO
+    if data is not None:
+        if data.image_data is not None:
+            img_data = data.image_data
+            # if st.button("Save image as base64"):
+                # im = Image.fromarray(img_data.astype('uint8'), mode="RGBA")
+                # buffered = BytesIO()
+                # im.save(buffered, format="PNG")
+                # img_str = base64.b64encode(buffered.getvalue())
+                # st.write(img_str)
+
+            im = Image.fromarray(img_data.astype('uint8'), mode="RGBA")
+            buffered = BytesIO()
+            im.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue())
+            output = str(img_str)[2:-1]
+            encoded_query = f'["data:image/png;base64,{output}"]'
+            # st.write(encoded_query)
+
+
         # from pprint import pprint
-        img = canvas_result.image_data
-        st.image(img)
+        # img = data.image_data
+        # st.image(img)
         # st.write(dir(img))
         # st.write(img)
         # st.write(type(img))
-        if st.button("Convert"):
+        # if st.button("Convert"):
             # output = Encoder.ndarray_to_png(img)
-            output = Encoder.rgb_ndarray_to_png(img)
-            st.write(type(output))
+            # output = Encoder.rgb_ndarray_to_png(img)
+            # st.write(type(output))
 
 
 
@@ -63,7 +83,7 @@ if st.button("Search"):
     if media_select == "Text":
         results = get_results(query=query, top_k=top_k)
         st.markdown(render_results(results))
-    elif media_select == "Image":
+    elif media_select == "Image" or media_select == "Draw":
         results = Getter.images(endpoint=endpoint, query=encoded_query, top_k=top_k)  # Just uses hardcoded image for now
         html = Renderer.images(results)
         st.write(html, unsafe_allow_html=True)
