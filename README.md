@@ -21,3 +21,13 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
+
+## 4. Search!
+
+### With Image
+
+![](.github/images/image.gif)
+
+### By Drawing
+
+![](.github/images/draw.gif)
