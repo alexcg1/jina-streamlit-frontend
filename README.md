@@ -1,10 +1,8 @@
 # Jina + Streamlit
 
-Supports both text and image search
+A simple front-end for [Jina](http://www.jina.ai) neural search framework, written in [Streamlit](http://www.streamlit.io), that supports querying with image, text, or drawing on a canvas.
 
 ## 1. Clone repo, install requirements
-
-
 
 ```bash
 git clone https://github.com/alexcg1/jina-streamlit-frontend.git
@@ -12,7 +10,7 @@ cd jina-streamlit-frontend.git
 pip install -r requirements.txt
 ```
 
-## 1. Run Docker Image
+## 1. Run Docker image
 
 For text:
 
@@ -26,7 +24,7 @@ For image:
 docker run -p 65481:65481 -e "JINA_PORT=65481" jinaai/hub.app.bitsearch-pokedex search
 ```
 
-## 3. Start up the front end
+## 3. Start up Streamlit front end
 
 ```bash
 streamlit run app.py
@@ -40,14 +38,23 @@ Use whatever Docker says is the right URL and port (in examples above, `45678` o
 
 ## 5. Search!
 
-### With Text
+<table>
+<tr>
+<td>Text</td>
+<td>Image</td>
+<td>Draw</td>
+</tr>
 
+
+<tr>
+<td>
 <img src=".github/images/text.gif" width=300>
-
-### With Image
-
+</td>
+<td>
 <img src=".github/images/image.gif" width=300>
-
-### By Drawing
-
+</td>
+<td>
 <img src=".github/images/draw.gif" width=300>
+</td>
+</tr>
+</table>
