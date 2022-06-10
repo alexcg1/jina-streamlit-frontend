@@ -1,3 +1,7 @@
+# This repo is deprecated. [Please search my repos for "example" where you can find many Jina apps with Streamlit frontends](https://github.com/alexcg1?tab=repositories&q=example&type=&language=&sort=)!
+
+---
+
 # Jina + Streamlit
 
 A simple front-end for [Jina](http://www.jina.ai) neural search framework, written in [Streamlit](http://www.streamlit.io), that supports querying with image, text, or drawing on a canvas.
